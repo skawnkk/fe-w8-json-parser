@@ -1,9 +1,6 @@
-const DataType = require('./dataType.js')
-const jsonObject = require('./json.json');
+import DataType from './dataType.js';
+import jsonObject from './json.json';
 const jsonString = JSON.stringify(jsonObject.TEST);
-
-console.log(DataType);
-
 
 //[1,2,3]
 //tokenizer
@@ -37,10 +34,10 @@ const Tokenizer =(str)=>{
                break;
             case '}':
                break; 
-               }
+         }
       }  
    }
    return target;
 }
 
-console.log(Tokenizer(jsonString))
+console.log(Tokenizer(jsonString));

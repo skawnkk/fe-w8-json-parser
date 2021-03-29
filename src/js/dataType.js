@@ -1,11 +1,11 @@
-export default class DataType{
+export default class DataType {
    constructor(type, value= ''){
       this.type = type;
       this.value =value;
       this.init()
     }
     init(){
-      if(type === 'array') {
+      if(this.type === 'array') {
          this.child = [];
        } 
     }
