@@ -31,7 +31,8 @@ or
 
 */
 
-const test = '["1a3",[null,false,["11",[112233],{"easy" : ["hello", {"a":"a"}, "world"]},112],55, "99"],{"a":"str", "b":[912,[5656,33],{"key" : "innervalue", "newkeys": [1,2,3,4,5]}]}, true]';
+// const test = '["1a3",[null,false,["11",[112233],{"easy" : ["hello", {"a":"a"}, "world"]},112],55, "99"],{"a":"str", "b":[912,[5656,33],{"key" : "innervalue", "newkeys": [1,2,3,4,5]}]}, true]';
+const test = '["1a3",[null,false,["a",3]]]';
 
 const error = () => {
   return new Error('에러에요');
@@ -46,20 +47,49 @@ const jsonParser = str => {
 
 // i = 시작 지점
 const handleTokenizer = (str, i = 0) => {
+  const result = [];
   // 토큰 단위로 잘라내기
   // [배열, "asdf", 123, 34.4, null, false, 객체, true]
   
   // 이러면 재귀 호출이 불가능.
   while(i < str.length) {
-    switch(str) {
-      case '{':
-      case '[':
-      case '"':
-      case '-':
-      case '숫자': 
-    }
+    const [idx, item] = handleToken(str, i);
+    result.push(item);
+    i = idx;
   }
+  return [result, i]
 };
+
+const handleToken=(str, i)=>{
+  console.log(str, i)
+  let idx, item = null;
+  switch(str[i]) {
+    case '{': 
+    [idx, item] =createObjectToken(str, ++i);
+      break; 
+    case '[': [idx, item] = createArrayToken(str, ++i);
+      break;
+    case '"': [idx, item] = createStringToken(str, ++i);
+      break;
+    case '-':
+    case '숫자': [idx, item] =createNumberToken(str, ++i);
+      break;
+  }
+ return [idx, item];
+}
+
+const createObjectToken = (str, i)=>{}
+const createStringToken = (str, i)=>{}
+const createNumberToken = (str, i)=>{}
+const createArrayToken = (str, i)=>{
+  const result = [];
+  while(str[i]!==']'){
+    const [idx, item]=handleToken(str, i)
+    i=idx;
+    result.push(item);
+  }
+  return [i, result];
+}
 
 const lexer = arr => {
   // 토큰 배열에 의미 추가
@@ -70,3 +100,5 @@ const parser = arr => {
   // 트리 구조로 변경
   // { "type" : "array", "child" : [{ "type" : "string", "value" : "asdf" }, { "type" : "number", "value" : 123 }, ... ]}
 };
+
+console.log(jsonParser(test))
