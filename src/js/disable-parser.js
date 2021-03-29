@@ -49,7 +49,7 @@ const jsonParser = str => {
 const handleTokenizer = (str, i = 0) => {
   const result = [];
   // 토큰 단위로 잘라내기
-  // [배열, "asdf", 123, 34.4, null, false, 객체, true]
+  // [ '[', "asdf", 123, 34.4, null, false, 객체, true]
   
   // 이러면 재귀 호출이 불가능.
   while(i < str.length) {
