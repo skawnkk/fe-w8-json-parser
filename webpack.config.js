@@ -17,7 +17,7 @@ module.exports = {
           { test: /\.js$/, exclude: /node_modules/, use: "babel-loader" },
         ],
       },
-    
+    devtool: 'inline-source-map',
     plugins: [
         new HtmlWebpackPlugin({
             template: 'src/index.html'
