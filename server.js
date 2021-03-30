@@ -1,4 +1,4 @@
-const express =require('express');
+const express = require('express');
 const app = express();
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
@@ -13,10 +13,11 @@ const portNumber = process.env.PORT;
 
 app.use(
    webpackMiddleware(
-      compiler, 
-      {
-         publicPath : webpackConfig.output.publicPath,
-         stats: { colors: true }
+      compiler, {
+         publicPath: webpackConfig.output.publicPath,
+         stats: {
+            colors: true
+         }
       }
    )
 ) //expresss- webpack 실행
@@ -24,4 +25,3 @@ app.use(
 app.listen(portNumber, function () {
    console.log('🎉started')
 })
-
