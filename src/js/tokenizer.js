@@ -6,7 +6,7 @@ const error = (i) => {
 
 // 주어진 문자열을 순서대로 방문하며, depth 구분 없이 토큰 단위의 배열로 반환.
 // create~Token() 함수들은 tokenizer의 내부에 존재.
-const tokenizer = str => {
+export const tokenizer = str => {
   const result = [];
   let i = 0;
   while(i < str.length) {
@@ -30,7 +30,7 @@ const tokenizer = str => {
         case 'f': 
           result.push(createFalseToken());
           continue;
-        case '"':
+        case '"': case '\'':
           result.push(createStringToken());
           continue;
       }
@@ -82,22 +82,20 @@ const tokenizer = str => {
     if(str[i] === '-') i++;
     let count = 0;
     while(i) {
+      console.log(str[i]);
       if(/\d|\./.test(str[i])) {
         if(/\./.test(str[i])) {
           count++;
         }
         i++;
       } else {
-        throw error(i);
+        break;
       }
     }
+    console.log(count);
     if(count > 1) throw error(i);
     return Number(str.substring(start, i));
   }
   
   return result;
 };
-
-const test = '["1a3",[null,false,["11",[112233],{"easy" : ["hello", {"a":"a"}, "world"]},112],55, "99"],{"a":"str", "b":[912,[5656,33],{"key" : "innervalue", "newkeys": [1,2,3,4,5]}]}, true]';
-
-console.log(tokenizer(test));
