@@ -34,7 +34,7 @@ export const tokenizer = str => {
           continue;
         case '"':
         case '\'':
-          result.push(createStringToken());
+          result.push(createStringToken(str[i]));
           continue;
       }
       if (/\d|-/.test(str[i])) {
@@ -69,10 +69,11 @@ export const tokenizer = str => {
     ++i;
     return false;
   }
-  //"1a3"
-  function createStringToken() {
+
+  function createStringToken(quotation) {
+
     const start = i;
-    while (str[++i] !== '"') {
+    while (str[++i] !== quotation) {
       if (str[i] === '\\') {
         i++;
       }
@@ -94,7 +95,6 @@ export const tokenizer = str => {
         break;
       }
     }
-    console.log(count);
     if (count > 1) throw error(i);
     return Number(str.substring(start, i));
   }
