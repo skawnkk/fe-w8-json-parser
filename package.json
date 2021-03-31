@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "nodemon server.js",
     "build": "node-sass /src/style/style.scss /src/style/style.css --watch"
 
+=======
+    "start": "nodemon server.js"
+>>>>>>> b6b31833ca047cdaa3d919679686ff982b94236f
   },
   "repository": {
     "type": "git",
