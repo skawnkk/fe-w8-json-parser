@@ -14,6 +14,7 @@ import {
    parser
 } from './parser.js';
 
+
 const init = () => {
    _.$('.parse-btn').addEventListener('click', () => parse());
    const textarea = _.$('.json-area');
@@ -24,8 +25,6 @@ const init = () => {
    }
 
    const jsonParser = str => {
-      console.log(tokenizer);
-      console.log(str, tokenizer(str));
       return lexer(tokenizer(str));
    }
 };
