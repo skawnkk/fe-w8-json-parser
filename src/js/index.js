@@ -1,6 +1,4 @@
 import "../style/style.scss";
-import DataType from './dataType.js';
-import jsonObject from './json.json';
 import {
    _
 } from './util.js';
@@ -17,12 +15,17 @@ const init = () => {
    const jsonParseResult = _.$('.json-parse');
    const parse = () => {
       const result = jsonParser(textarea.value);
-      jsonParseResult.textContent = result.reduce((acc, cur) => acc += cur + '\n', '');
+
+      jsonParseResult.innerText = result.reduce((acc, cur) => {
+         acc += cur + '\n';
+         return acc;
+      }, '');
+      // jsonParseResult.textContent = result.reduce((acc, cur) => acc += cur + '\n', '');
    }
 
    const jsonParser = str => {
-      console.log(tokenizer);
-      console.log(str, tokenizer(str));
+      const step2 = tokenizer(str)
+      console.log("lexer:", lexer(step2))
       return lexer(tokenizer(str));
    }
 };
