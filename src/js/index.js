@@ -10,6 +10,9 @@ import {
 import {
    lexer
 } from './lexer.js';
+import {
+   parser
+} from './parser.js';
 
 const init = () => {
    _.$('.parse-btn').addEventListener('click', () => parse());
