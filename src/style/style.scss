@@ -1,0 +1,52 @@
+@import './reset.scss';
+.banner{
+   color: white;
+   background-color:navy;
+   height: 5rem;
+   padding: 2rem;
+   font-size: 1.2rem;
+   line-height: 1rem;
+   margin-bottom: 2rem;
+}
+
+.parse-btn {
+   cursor: pointer;
+   padding: 0.5rem;
+   border: 1px solid navy;
+   background: navy;
+   overflow: hidden;
+   height: 5rem;
+   width: 5rem;
+   margin-left: -2.5rem;
+   z-index: 1;
+   text-align: center;
+   line-height: 2rem;
+   border-radius: 50%;
+   align-self: center;
+   span {
+      font-size: 10rem;
+      position: relative;
+      display: inline-block;
+      left: -5.5rem;
+      color: #fff;
+   }
+}
+
+.space{
+   display: grid;
+   grid-template-columns: 1fr 0rem 1fr;
+   margin: 0 2rem;
+   grid-gap: 1.5rem;
+}
+
+textarea {
+   width: 100%;
+   min-height: 30rem;
+   border: 1px solid #999;
+   padding: 1rem;
+}
+
+.json-parse {
+   border: 1px solid #999;
+    padding: 1rem;
+}
