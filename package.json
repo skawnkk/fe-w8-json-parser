@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "nodemon server.js",
-    "build": "node-sass /src/style/style.scss /src/style/style.css --watch"
+    "build": "node-sass ./src/style/style.scss ./src/style/style.css --watch"
 
   },
   "repository": {
