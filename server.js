@@ -7,10 +7,6 @@ const compiler = webpack(webpackConfig);
 // require('dotenv').config();
 const portNumber = process.env.PORT;
 
-// const fs = require("fs");
-// const path = require('path');
-// app.get('/json', (req, res) => res.json(fs.readFileSync("./src/js/json.json")));
-
 app.use(
    webpackMiddleware(
       compiler, {
@@ -20,7 +16,7 @@ app.use(
          }
       }
    )
-) //expresss- webpack 실행
+)
 
 app.listen(portNumber, function () {
    console.log('🎉started')
