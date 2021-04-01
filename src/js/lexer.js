@@ -2,7 +2,7 @@ import {
   DEFINEKEYWORD
 } from './variables.js'
 
-export const lexer = arr => {
+export default function lexer(arr) {
   const arrayStack = [];
   const objectStack = [];
 
@@ -10,7 +10,8 @@ export const lexer = arr => {
     console.log(cur)
     const type = cur === null ? 'null_object' : DEFINEKEYWORD[cur.toString()[0]] || 'number';
     const object = {
-      type
+      type,
+      depth: arrayStack.length + objectStack.length
     }
     switch (type) {
       case 'array':
@@ -39,6 +40,7 @@ export const lexer = arr => {
         objectStack.pop();
         break;
     }
+
     return [...acc, object];
   }, []);
   return result;

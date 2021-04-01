@@ -13,10 +13,13 @@
       <div class="banner">Jsonami Parser</div>
       <div class="space">
          <div class="json-wrap">
-            <textarea class="json-area"></textarea>
+            <textarea
+               class="json-area">["1a3",[null,false,["11",[112233],{"easy" : ["hello", {"a":"a"}, "world"]},112],55, "99"],{"a":"str", "b":[912,[5656,33],{"key" : "innervalue", "newkeys": [1,2,3,4,5]}]}, true]</textarea>
          </div>
-         <button class="parse-btn"><span>→</span></button>
-         <div class="json-parse"></div>
+         <button class="parse-btn disabled"><span>→</span></button>
+         <div class="json-parse">
+            <p class="json-parse--placeholder">분석결과</p>
+         </div>
       </div>
 
    </body>
