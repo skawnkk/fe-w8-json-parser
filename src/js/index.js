@@ -17,37 +17,33 @@ const init = () => {
    })
    const parse = () => {
       const result = jsonParser(textarea.value);
-
-      function render(item, prefix = '{') {
-
-         let html = `<div style = "padding-left: ${item.depth * 15}px"><span>${prefix}</span><br>`;
-         html += `<span class="object-property">"type": "${item.type}"</span></br>`;
-         console.log(item)
+      function render(item, prefix = '{', suffix = ',') {
+         let html = `<div class="object-block">${prefix}`;
+         html += `<div class="object-property">"type": "${item.type}",</div>`;
          if (item.child) {
-            html += `<span class="object-property">"child" :[</span><br>`;
+            html += `<div class="object-property">"child": [`;
             while (item.child.length > 0) {
-               html += render(item.child.shift())
+               html += render(item.child.shift(), '{', item.child.length === 0 ? '' : ',');
             }
-            html += '<span>]</span><br>'
+            html += ']</div>'
          } else if (item.hasOwnProperty('value')) {
             if (item.value && typeof item.value !== 'boolean' && item.value.propKey) {
-               html += `<div style = "padding-left: ${item.depth *15}px">"propKey": {<br>`;
-               html += `<span class="object-property">"type": ${item.value.propKey.type}</span><br>`
-               html += `<span class="object-property">"value": ${item.value.propKey.value},</span><br>`;
-
+               html += `<div class="object-block">"propKey": {`;
+               html += `<div class="object-property">"type": ${item.value.propKey.type},</div>`
+               html += `<div class="object-property">"value": ${item.value.propKey.value},</div>`;
                html += `},<br>`
                html += `"propValue": {`
-               //if (item.value.propValue.child) 
                html += render(item.value.propValue, '')
-               //else html += `<span class="object-property">`
-            } else html += `<span class="object-property">"value" : ${item.value}</span><br>`;
+               html += '</div>';
+            } else html += `<div class="object-property">"value": ${item.value}</div>`;
          }
 
-         html += `<span>},</span><br></div>`;
+         html += `<div>}${suffix}</div></div>`;
          return html;
       }
-
-      jsonParseResult.innerHTML = render(result);
+      const renderHTML = render(result);
+      const lastComma = renderHTML.lastIndexOf(',');
+      jsonParseResult.innerHTML = renderHTML.substring(0, lastComma) + renderHTML.substring(lastComma + 1);
    }
 };
 

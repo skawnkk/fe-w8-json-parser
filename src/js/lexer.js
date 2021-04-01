@@ -7,7 +7,6 @@ export default function lexer(arr) {
   const objectStack = [];
 
   const result = arr.reduce((acc, cur) => {
-    console.log(cur)
     const type = cur === null ? 'null_object' : DEFINEKEYWORD[cur.toString()[0]] || 'number';
     const object = {
       type,
