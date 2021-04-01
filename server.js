@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackConfig = require('./webpack.config.js');
 const compiler = webpack(webpackConfig);
-// require('dotenv').config();
+require('dotenv').config();
 const portNumber = process.env.PORT;
 
 // const fs = require("fs");
