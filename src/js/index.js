@@ -1,5 +1,4 @@
 import style from "../style/style.scss";
-console.log(style)
 import {
    _
 } from './util.js';
