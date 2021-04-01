@@ -8,7 +8,7 @@ const error = (i) => {
 
 // 주어진 문자열을 순서대로 방문하며, depth 구분 없이 토큰 단위의 배열로 반환.
 // create~Token() 함수들은 tokenizer의 내부에 존재.
-export const tokenizer = str => {
+export default function tokenizer(str) {
   const result = [];
   let i = 0;
   while (i < str.length) {
