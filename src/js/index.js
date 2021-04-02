@@ -10,6 +10,7 @@ const init = () => {
   const parseBtn = _.$(".parse-btn");
   const textarea = _.$(".json-area");
   const jsonParseResult = _.$(".json-parse");
+  const parseAnalysis = _.$(".parse-analysis");
 
   parseBtn.addEventListener("click", () => parse());
   textarea.addEventListener("input", ({ target }) => {
@@ -27,14 +28,14 @@ const init = () => {
       const result = jsonParser(textarea.value);
       const renderHTML = createHTML(result);
       const lastComma = renderHTML.lastIndexOf(",");
-      const resultAnalysis = `<div><span>배열중첩수준: ${Math.max(
-        ...parserDepth
-      )}</span><br><span>숫자타입갯수: ${numberTypeCounter}</span><br><span>문자타입갯수: ${stringTypeCounter}</span></div>`;
-
+      parseAnalysis.innerHTML = `
+        <span>배열중첩수준: ${Math.max(...parserDepth)}</span><br>
+        <span>숫자타입갯수: ${numberTypeCounter}</span><br>
+        <span>문자타입갯수: ${stringTypeCounter}</span>
+      `;
       jsonParseResult.innerHTML =
         renderHTML.substring(0, lastComma) +
         renderHTML.substring(lastComma + 1);
-      jsonParseResult.insertAdjacentHTML("afterEnd", resultAnalysis);
     } catch (e) {
       console.error(e);
       jsonParseResult.innerHTML = "👿제이슨 형식이 올바르지 않습니다💀";

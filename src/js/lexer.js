@@ -4,6 +4,8 @@ export let stringTypeCounter = 0;
 export let numberTypeCounter = 0;
 export const parserDepth = [];
 export default function lexer(arr) {
+  stringTypeCounter = 0;
+  numberTypeCounter = 0;
   const arrayStack = [];
   const objectStack = [];
 
