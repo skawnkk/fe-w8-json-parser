@@ -3,18 +3,25 @@ import {
    _
 } from './util.js';
 import jsonParser from './jsonParser.js';
+import { exampleData } from './exampledata.js';
 
 const init = () => {
    const parseBtn = _.$('.parse-btn');
    parseBtn.addEventListener('click', () => parse());
    const textarea = _.$('.json-area');
    const jsonParseResult = _.$('.json-parse');
-   textarea.addEventListener('keyup', ({
+   textarea.addEventListener('input', ({
       target
    }) => {
-      if (target.value.length > 0) parseBtn.classList.remove('disabled')
-      else parseBtn.classList.add('disabled')
-   })
+      if (target.value.length > 0) changeButtonClass('add');
+      else changeButtonClass('remove');
+   });
+
+   const changeButtonClass = type => {
+      if(type === 'add') parseBtn.classList.add('disabled');
+      else parseBtn.classList.remove('disabled')
+   }
+
    const parse = () => {
       const result = jsonParser(textarea.value);
       function render(item, prefix = '{', suffix = ',') {
@@ -45,6 +52,14 @@ const init = () => {
       const lastComma = renderHTML.lastIndexOf(',');
       jsonParseResult.innerHTML = renderHTML.substring(0, lastComma) + renderHTML.substring(lastComma + 1);
    }
+   const exampleButtons = _.$('.example-buttons');
+   exampleButtons.innerHTML = exampleData.reduce((acc, cur, i) => acc + `<button value="${i}">example ${i + 1}</button>`, '');
+   exampleButtons.addEventListener('click', ({ target }) => {
+      if(target.value) {
+         textarea.value = exampleData[target.value].toString();
+         changeButtonClass('remove');
+      }
+   });
 };
 
 init();
