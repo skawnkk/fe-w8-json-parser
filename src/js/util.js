@@ -9,3 +9,6 @@ export const _ = {
       base.addEventListener(eventType, callbackFn);
    },
 };
+
+export const createDom = (tag) => ({ value = '', classes = [] } = {}) =>
+  `<${tag} class='${classes.join(' ')}'>${value}</${tag}>`;
