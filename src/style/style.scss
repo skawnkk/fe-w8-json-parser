@@ -1,5 +1,7 @@
 @import "./reset.scss";
-@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap');
+
 
 
 $color: navy;
@@ -11,7 +13,7 @@ $color: navy;
   padding: 2rem;
   font-size: 1.7rem;
   line-height: 1rem;
-  font-family: 'Monoton', cursive;
+  font-family: 'Audiowide', cursive;
 }
 
 .parse-btn {
@@ -67,9 +69,11 @@ textarea {
   border: 1px solid #999;
   padding: 1rem;
   resize: none;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .json-parse {
+  font-family: 'Roboto Mono', monospace;
   border: 1px solid #999;
   padding: 1rem;
   height: 65vh;
