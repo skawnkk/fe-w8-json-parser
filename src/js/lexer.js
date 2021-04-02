@@ -1,58 +1,55 @@
-import { DEFINEKEYWORD } from "./variables.js";
+import {
+  DEFINEKEYWORD
+} from './variables.js'
 
 export let stringTypeCounter = 0;
 export let numberTypeCounter = 0;
 export const parserDepth = [];
 export default function lexer(arr) {
-  stringTypeCounter = 0;
-  numberTypeCounter = 0;
   const arrayStack = [];
   const objectStack = [];
 
   const result = arr.reduce((acc, cur) => {
-    const type =
-      cur === null
-        ? "null_object"
-        : DEFINEKEYWORD[cur.toString()[0]] || "number";
+    const type = cur === null ? 'null_object' : DEFINEKEYWORD[cur.toString()[0]] || 'number';
     const object = {
       type,
-      depth: arrayStack.length + objectStack.length,
-    };
+      depth: arrayStack.length + objectStack.length
+    }
 
     switch (type) {
-      case "array":
+      case 'array':
         object.child = [];
-        if (arrayStack.length > 0) object.value = "arrayObject";
-        arrayStack.push(1);
+        if (arrayStack.length > 0) object.value = 'arrayObject';
+        arrayStack.push(1)
         break;
-      case "object":
+      case 'object':
         object.child = [];
-        objectStack.push(1);
+        objectStack.push(1)
         break;
-      case "seperator":
-      case "colon":
-      case "string":
+      case 'seperator':
+      case 'colon':
+      case 'string':
         object.value = cur;
         stringTypeCounter++;
         break;
-      case "null_object":
-      case "boolean":
+      case 'null_object':
+      case 'boolean':
         object.value = cur;
         break;
-      case "number":
+      case 'number':
         object.value = cur;
         numberTypeCounter++;
         break;
-      case "close_array":
+      case 'close_array':
         object.value = cur;
         arrayStack.pop();
         break;
-      case "close_object":
+      case 'close_object':
         object.value = cur;
         objectStack.pop();
         break;
     }
-    parserDepth.push(object.depth);
+    parserDepth.push(object.depth)
 
     return [...acc, object];
   }, []);
