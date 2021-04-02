@@ -1,19 +1,21 @@
 @import './reset.scss';
+
+$color: navy;
+
 .banner{
    color: white;
-   background-color:navy;
+   background-color: $color;
    height: 5rem;
    padding: 2rem;
    font-size: 1.2rem;
    line-height: 1rem;
-   margin-bottom: 2rem;
 }
 
 .parse-btn {
    cursor: pointer;
    padding: 0.5rem;
-   border: 1px solid navy;
-   background: navy;
+   border: 1px solid $color;
+   background: $color;
    overflow: hidden;
    height: 5rem;
    width: 5rem;
@@ -23,12 +25,28 @@
    line-height: 2rem;
    border-radius: 50%;
    align-self: center;
+   box-shadow: #555 3px 3px 0px 0px;
    span {
       font-size: 10rem;
       position: relative;
       display: inline-block;
       left: -5.5rem;
       color: #fff;
+   }
+   &:focus {
+      outline: none;
+   }
+   &:active {
+      transform: translate3d(1px, 1px, 1px);
+      box-shadow: #555 2px 2px 0px 0px;
+    }
+   &.disabled{
+      user-select: none;
+      pointer-events: none;
+      background-color: #373789;
+      filter: brightness(0.6);
+      opacity: 0.95;
+      box-shadow: none;
    }
 }
 
@@ -44,6 +62,7 @@ textarea {
    height: 30rem;
    border: 1px solid #999;
    padding: 1rem;
+   resize: none;
 }
 
 .json-parse {
@@ -53,6 +72,16 @@ textarea {
    overflow: auto;
    &--placeholder {
       color: #999;
+   }
+   &::-webkit-scrollbar {
+      width: 0.8rem;
+   }
+   &::-webkit-scrollbar-thumb {
+      background-color: $color;
+      border-radius: 0.15rem;
+   }
+   &::-webkit-scrollbar-track {
+      background-color: #eee;
    }
 }
 .object-block {
@@ -65,9 +94,28 @@ textarea {
    line-height: 1.25rem;
 }
 
-.disabled{
-   user-select: none;
-   pointer-events: none;
-   background-color: #373789;
-   filter: brightness(0.7);
+.example-buttons {
+   margin: 0.5rem 1.5rem;
+   display: flex;
+   button {
+      cursor: pointer;
+      padding: 0.5rem;
+      text-align: center;
+      border-radius: 0.5rem;
+      border: 1px solid #333;
+      box-shadow: #555 3px 3px 0px 0px;
+      margin: 0.5rem;
+      &:active {
+         transform: translate3d(1px, 1px, 1px);
+         box-shadow: #555 2px 2px 0px 0px;
+      }
+      &:hover {
+         border: 1px solid $color;
+         background: $color;
+         color: #fff;
+      }
+      &:focus {
+         outline: none;
+      }
+   }
 }

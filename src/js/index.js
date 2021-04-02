@@ -3,6 +3,7 @@ import {
    _
 } from './util.js';
 import jsonParser from './jsonParser.js';
+import { exampleData } from './exampledata.js';
 
 import {stringTypeCounter, numberTypeCounter, parserDepth} from './lexer.js';
 
@@ -10,14 +11,17 @@ const init = () => {
    const parseBtn = _.$('.parse-btn');
    const textarea = _.$('.json-area');
    const jsonParseResult = _.$('.json-parse');
-
-   parseBtn.addEventListener('click', () => parse());
-   textarea.addEventListener('keyup', ({
+   textarea.addEventListener('input', ({
       target
    }) => {
-      if (target.value.length > 0) parseBtn.classList.remove('disabled')
-      else parseBtn.classList.add('disabled')
-   })
+      if (target.value.length > 0) changeButtonClass('add');
+      else changeButtonClass('remove');
+   });
+
+   const changeButtonClass = type => {
+      if(type === 'add') parseBtn.classList.add('disabled');
+      else parseBtn.classList.remove('disabled')
+   }
 
    const parse = () => {
       try{
@@ -58,6 +62,14 @@ const init = () => {
          jsonParseResult.innerHTML = '👿제이슨 형식이 올바르지 않습니다💀';
       }
    }
+   const exampleButtons = _.$('.example-buttons');
+   exampleButtons.innerHTML = exampleData.reduce((acc, cur, i) => acc + `<button value="${i}">example ${i + 1}</button>`, '');
+   exampleButtons.addEventListener('click', ({ target }) => {
+      if(target.value) {
+         textarea.value = exampleData[target.value].toString();
+         changeButtonClass('remove');
+      }
+   });
 };
 
 init();
