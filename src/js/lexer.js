@@ -16,7 +16,7 @@ export default function lexer(arr) {
         : DEFINEKEYWORD[cur.toString()[0]] || "number";
     const object = {
       type,
-      depth: arrayStack.length + objectStack.length,
+      depth: arrayStack.length
     };
 
     switch (type) {
@@ -31,6 +31,8 @@ export default function lexer(arr) {
         break;
       case "seperator":
       case "colon":
+        object.value = cur;
+        break;
       case "string":
         object.value = cur;
         stringTypeCounter++;

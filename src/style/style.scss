@@ -1,6 +1,7 @@
 @import "./reset.scss";
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 
+
 $color: navy;
 
 .banner {
@@ -8,7 +9,7 @@ $color: navy;
   background-color: $color;
   height: 5rem;
   padding: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   line-height: 1rem;
   font-family: 'Monoton', cursive;
 }
