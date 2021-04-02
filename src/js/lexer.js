@@ -2,12 +2,14 @@ import { DEFINEKEYWORD } from "./variables.js";
 
 export let stringTypeCounter = 0;
 export let numberTypeCounter = 0;
-export const parserDepth = [];
+export let parserDepth = [];
+
 export default function lexer(arr) {
   stringTypeCounter = 0;
   numberTypeCounter = 0;
   const arrayStack = [];
   const objectStack = [];
+  parserDepth = [];
 
   const result = arr.reduce((acc, cur) => {
     const type =
