@@ -10,5 +10,8 @@ export const _ = {
    },
 };
 
-export const createDom = (tag) => ({ value = '', classes = [] } = {}) =>
-  `<${tag} class='${classes.join(' ')}'>${value}</${tag}>`;
+export const openDom =  ({tag='div', value = '', classes = [] }={}) =>
+  `<${tag} class='${classes.join(' ')}'>${value}`;
+
+export const closeDom = ({tag = 'div', value =''}={}) =>
+  `${value}</${tag}>`;
