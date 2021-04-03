@@ -120,7 +120,7 @@ module.exports = {
 
 ## 에러 수정
 
-1. HtmlWebpackPlugin, CleanWebpackPlugin 등 모듈의 Cannot find module 에러
+### 1. HtmlWebpackPlugin, CleanWebpackPlugin 등 모듈의 Cannot find module 에러
 
 tsconfig.json의 module 옵션이 amd, system, es6일 경우 기본 값은 classic이 된다.  
 클래식에서는 module을 찾을 때, 전역 폴더부터 하위 폴더를 탐색하게 되며,  
@@ -133,7 +133,7 @@ tsconfig.json에 아래의 옵션을 추가
 
 ___ 
 
-2. writeToDisk 일 때, nodemon이 자동 재시작하는 문제
+### 2. writeToDisk 일 때, nodemon이 자동 재시작하는 문제
 
 dist 폴더를 ignore 처리하면 해결된다!  
 package.json의 최상위 프로퍼티에 아래의 프로퍼티를 추가한다.
@@ -146,9 +146,9 @@ package.json의 최상위 프로퍼티에 아래의 프로퍼티를 추가한다
 
 ___ 
 
-3. js 파일에서 css를 로드할 때, Cannot find module '경로/파일' or its corresponding type declarations. 에러가 발생
+### 3. js 파일에서 css를 로드할 때, Cannot find module '경로/파일' or its corresponding type declarations. 에러가 발생
 
-> 1. alias 삭제
+alias 삭제
 
 ```javascript
 // 기존
@@ -157,18 +157,34 @@ import style from "../style/style.scss";
 import "../style/style.scss";
 ```
 
-4. server.js에서 webpack 관련 에러가 발생하는 경우
+### 4. server.js에서 webpack 관련 에러가 발생하는 경우
 
 > ERROR in C:\Users\kowoo\github\codesquad\fe-w8-json-parser\server.js(6,26) TS2769: No overload matches this call.
 
-> 1. ignore 추가
+1. ignore 추가
 
 ```javascript
 // @ts-ignore
 const compiler = webpack(webpackConfig);
 ```
 
-> 2. tsconfig.json에서 checkJs 삭제
+2. tsconfig.json에서 checkJs 삭제
 
 근본적인 해결책을 못찾겠음 ::(
 
+### 5. ts로 import 경로를 바꿨을 때, 컴파일러가 인식 못하는 경우 or ts 확장자를 인식 못하는 경우
+
+```typescript
+import { stringTypeCounter, numberTypeCounter, parserDepth } from "./lexer";
+
+// Module not found: Error: Can't resolve './lexer' in 'C:\Users\kowoo\github\codesquad\fe-w8-json-parser\src\js'
+```
+
+webpack.config.js resolve를 설정한다.  
+resolve는 확장자의 경로를 인식할 수 있게 도와주는 옵션.
+
+```
+resolve: {
+  extensions: ['.js', '.jsx', '.ts', '.tsx', '.css']
+},
+```
