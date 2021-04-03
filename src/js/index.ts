@@ -1,32 +1,32 @@
 import "../style/style.scss";
 import { _ } from "./util.js";
-import jsonParser from "./jsonParser.js";
+import jsonParser from "./jsonParser";
 import createHTML from "./createHTML.js";
 import { exampleData } from "./exampledata.js";
-import { stringTypeCounter, numberTypeCounter, parserDepth } from "./lexer.js";
+import { stringTypeCounter, numberTypeCounter, parserDepth } from "./lexer";
 
-const init = () => {
-  const parseBtn = _.$(".parse-btn");
-  const textarea = _.$(".json-area");
-  const jsonParseResult = _.$(".json-parse");
-  const parseAnalysis = _.$(".parse-analysis");
+const init = (): void => {
+  const parseBtn: HTMLButtonElement = _.$(".parse-btn");
+  const textarea: HTMLTextAreaElement = _.$(".json-area");
+  const jsonParseResult: HTMLDivElement = _.$(".json-parse");
+  const parseAnalysis: HTMLDivElement = _.$(".parse-analysis");
 
-  parseBtn.addEventListener("click", () => parse());
-  textarea.addEventListener("input", ({ target }) => {
-    if (target.value.length > 0) changeButtonClass("remove");
+  parseBtn.addEventListener("click", (): void => parse());
+  textarea.addEventListener("input", ({ target }): void => {
+    if ((target as HTMLTextAreaElement).value.length > 0) changeButtonClass("remove");
     else changeButtonClass("add");
   });
 
-  const changeButtonClass = (type) => {
+  const changeButtonClass = (type): void => {
     if (type === "add") parseBtn.classList.add("disabled");
     else parseBtn.classList.remove("disabled");
   };
 
   const parse = () => {
     try {
-      const result = jsonParser(textarea.value);
-      const renderHTML = createHTML(result);
-      const lastComma = renderHTML.lastIndexOf(",");
+      const result: object[] = jsonParser(textarea.value);
+      const renderHTML: string = createHTML(result);
+      const lastComma: number = renderHTML.lastIndexOf(",");
       parseAnalysis.innerHTML = `
         <span>배열중첩수준: ${Math.max(...parserDepth)}</span><br>
         <span>숫자타입갯수: ${numberTypeCounter}</span><br>
@@ -41,7 +41,7 @@ const init = () => {
     }
   };
 
-  const renderExampleBtns = (exampleBtn) => {
+  const renderExampleBtns = (exampleBtn): void => {
     exampleBtn.innerHTML = exampleData.reduce(
       (acc, cur, i) => acc + `<button value="${i}">example ${i + 1}</button>`,
       ""

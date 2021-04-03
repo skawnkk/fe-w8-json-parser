@@ -1,10 +1,7 @@
-//const test = `["junamis'", 'abc's']`;
-//const test = '["1a3",[null,false,["11",[112233],{"easy" : ["hello", {"a":"a"}, "world"]},112],55, "99"],{"a":"str", "b":[912,[5656,33],{"key" : "innervalue", "newkeys": [1,2,3,4,5]}]}, true]';
-
-export default function parser(arr) {
-  const stack = [];
-  let prev = null;
-  let prop = null;
+export default function parser(arr): object[] {
+  const stack: object[][] = [];
+  let prev: object = null;
+  let prop: any = null;
   for (const item of arr) {
     switch (item.type) {
       case "array":
