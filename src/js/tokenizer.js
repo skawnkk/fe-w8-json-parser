@@ -1,18 +1,18 @@
-import {
-  SEPARATOR
-} from './variables.js';
+import { SEPARATOR } from "./variables.js";
 
 const error = (i) => {
-  return new Error(`🧰SyntaxError: Unexpected token e in JSON at position ${i}`);
-}
+  return new Error(
+    `🧰SyntaxError: Unexpected token e in JSON at position ${i}`
+  );
+};
 
 // 주어진 문자열을 순서대로 방문하며, depth 구분 없이 토큰 단위의 배열로 반환.
 // create~Token() 함수들은 tokenizer의 내부에 존재.
-export const tokenizer = str => {
+export default function tokenizer(str) {
   const result = [];
   let i = 0;
   while (i < str.length) {
-    if (str[i] === ' ') {
+    if (str[i] === " ") {
       i++;
       continue;
     }
@@ -23,17 +23,17 @@ export const tokenizer = str => {
     } else {
       // null, true, false, ", 0~9
       switch (str[i]) {
-        case 'n':
+        case "n":
           result.push(createNullToken());
           continue;
-        case 't':
+        case "t":
           result.push(createTrueToken());
           continue;
-        case 'f':
+        case "f":
           result.push(createFalseToken());
           continue;
         case '"':
-        case '\'':
+        case "'":
           result.push(createStringToken(str[i]));
           continue;
       }
@@ -46,35 +46,34 @@ export const tokenizer = str => {
   }
 
   function createNullToken() {
-    if (str[++i] !== 'u') throw error(i);
-    if (str[++i] !== 'l') throw error(i);
-    if (str[++i] !== 'l') throw error(i);
+    if (str[++i] !== "u") throw error(i);
+    if (str[++i] !== "l") throw error(i);
+    if (str[++i] !== "l") throw error(i);
     ++i;
     return null;
   }
 
   function createTrueToken() {
-    if (str[++i] !== 'r') throw error(i);
-    if (str[++i] !== 'u') throw error(i);
-    if (str[++i] !== 'e') throw error(i);
+    if (str[++i] !== "r") throw error(i);
+    if (str[++i] !== "u") throw error(i);
+    if (str[++i] !== "e") throw error(i);
     ++i;
     return true;
   }
 
   function createFalseToken() {
-    if (str[++i] !== 'a') throw error(i);
-    if (str[++i] !== 'l') throw error(i);
-    if (str[++i] !== 's') throw error(i);
-    if (str[++i] !== 'e') throw error(i);
+    if (str[++i] !== "a") throw error(i);
+    if (str[++i] !== "l") throw error(i);
+    if (str[++i] !== "s") throw error(i);
+    if (str[++i] !== "e") throw error(i);
     ++i;
     return false;
   }
 
   function createStringToken(quotation) {
-
     const start = i;
     while (str[++i] !== quotation) {
-      if (str[i] === '\\') {
+      if (str[i] === "\\") {
         i++;
       }
     }
@@ -83,7 +82,7 @@ export const tokenizer = str => {
 
   function createNumberToken() {
     const start = i;
-    if (str[i] === '-') i++;
+    if (str[i] === "-") i++;
     let count = 0;
     while (i) {
       if (/\d|\./.test(str[i])) {
@@ -100,4 +99,4 @@ export const tokenizer = str => {
   }
 
   return result;
-};
+}

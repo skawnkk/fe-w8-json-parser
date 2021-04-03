@@ -1,1 +1,86 @@
-{"randomJSON": ["1a3",[null,false,["11",[112233],{"easy" : ["hello", {"a":"a"}, "world"]},112],55, "99"],{"a":"str", "b":[912,[5656,33],{"key" : "innervalue", "newkeys": [1,2,3,4,5]}]}, true],"TEST":[1,2,3]}
+{"randomJSON": ["1a3",[null,false,["11" ,[112233],{"easy" : ["hello", {"a":"a"}, "world"]},112],55, "99"],{"a":"str", "b":[912,[5656,33],{"key" : "innervalue", "newkeys": [1,2,3,4,5]}]}, true],"TEST":[1,2,3]}
+
+
+//tokenizerResult
+["[", ""1a3"", ",", "[", null, ",", false, ",", "[", ""11"", ",", "[", 112233, "]", ",", "{", ""easy"", ":", "[", ""hello"", ",", "{", ""a"", ":", ""a"", "}", ",", ""world"", "]", "}", ",", 112, "]", ",", 55, ",", ""99"", "]", ",", "{", ""a"", ":", ""str"", ",", ""b"", ":", "[", 912, ",", "[", 5656, ",", 33, "]", ",", "{", ""key"", ":", ""innervalue"", ",", ""newkeys"", ":", "[", 1, ",", 2, ",", 3, ",", 4, ",", 5, "]", "}", "]", "}", ",", true, "]"]
+
+//lexerResult
+0: {type: "array", depth: 0, child: Array(0)}
+1: {type: "string", depth: 1, value: ""1a3""}
+2: {type: "seperator", depth: 1, value: ","}
+3: {type: "array", depth: 1, child: Array(0), value: "arrayObject"}
+4: {type: "null_object", depth: 2, value: null}
+5: {type: "seperator", depth: 2, value: ","}
+6: {type: "boolean", depth: 2, value: false}
+7: {type: "seperator", depth: 2, value: ","}
+8: {type: "array", depth: 2, child: Array(0), value: "arrayObject"}
+9: {type: "string", depth: 3, value: ""11""}
+10: {type: "seperator", depth: 3, value: ","}
+11: {type: "array", depth: 3, child: Array(0), value: "arrayObject"}
+12: {type: "number", depth: 4, value: 112233}
+13: {type: "close_array", depth: 4, value: "]"}
+14: {type: "seperator", depth: 3, value: ","}
+15: {type: "object", depth: 3, child: Array(0)}
+16: {type: "string", depth: 4, value: ""easy""}
+17: {type: "colon", depth: 4, value: ":"}
+18: {type: "array", depth: 4, child: Array(0), value: "arrayObject"}
+19: {type: "string", depth: 5, value: ""hello""}
+20: {type: "seperator", depth: 5, value: ","}
+21: {type: "object", depth: 5, child: Array(0)}
+22: {type: "string", depth: 6, value: ""a""}
+23: {type: "colon", depth: 6, value: ":"}
+24: {type: "string", depth: 6, value: ""a""}
+25: {type: "close_object", depth: 6, value: "}"}
+26: {type: "seperator", depth: 5, value: ","}
+27: {type: "string", depth: 5, value: ""world""}
+28: {type: "close_array", depth: 5, value: "]"}
+29: {type: "close_object", depth: 4, value: "}"}
+30: {type: "seperator", depth: 3, value: ","}
+31: {type: "number", depth: 3, value: 112}
+32: {type: "close_array", depth: 3, value: "]"}
+33: {type: "seperator", depth: 2, value: ","}
+34: {type: "number", depth: 2, value: 55}
+35: {type: "seperator", depth: 2, value: ","}
+36: {type: "string", depth: 2, value: ""99""}
+37: {type: "close_array", depth: 2, value: "]"}
+38: {type: "seperator", depth: 1, value: ","}
+39: {type: "object", depth: 1, child: Array(0)}
+40: {type: "string", depth: 2, value: ""a""}
+41: {type: "colon", depth: 2, value: ":"}
+42: {type: "string", depth: 2, value: ""str""}
+43: {type: "seperator", depth: 2, value: ","}
+44: {type: "string", depth: 2, value: ""b""}
+45: {type: "colon", depth: 2, value: ":"}
+46: {type: "array", depth: 2, child: Array(0), value: "arrayObject"}
+47: {type: "number", depth: 3, value: 912}
+48: {type: "seperator", depth: 3, value: ","}
+49: {type: "array", depth: 3, child: Array(0), value: "arrayObject"}
+50: {type: "number", depth: 4, value: 5656}
+51: {type: "seperator", depth: 4, value: ","}
+52: {type: "number", depth: 4, value: 33}
+53: {type: "close_array", depth: 4, value: "]"}
+54: {type: "seperator", depth: 3, value: ","}
+55: {type: "object", depth: 3, child: Array(0)}
+56: {type: "string", depth: 4, value: ""key""}
+57: {type: "colon", depth: 4, value: ":"}
+58: {type: "string", depth: 4, value: ""innervalue""}
+59: {type: "seperator", depth: 4, value: ","}
+60: {type: "string", depth: 4, value: ""newkeys""}
+61: {type: "colon", depth: 4, value: ":"}
+62: {type: "array", depth: 4, child: Array(0), value: "arrayObject"}
+63: {type: "number", depth: 5, value: 1}
+64: {type: "seperator", depth: 5, value: ","}
+65: {type: "number", depth: 5, value: 2}
+66: {type: "seperator", depth: 5, value: ","}
+67: {type: "number", depth: 5, value: 3}
+68: {type: "seperator", depth: 5, value: ","}
+69: {type: "number", depth: 5, value: 4}
+70: {type: "seperator", depth: 5, value: ","}
+71: {type: "number", depth: 5, value: 5}
+72: {type: "close_array", depth: 5, value: "]"}
+73: {type: "close_object", depth: 4, value: "}"}
+74: {type: "close_array", depth: 3, value: "]"}
+75: {type: "close_object", depth: 2, value: "}"}
+76: {type: "seperator", depth: 1, value: ","}
+77: {type: "boolean", depth: 1, value: true}
+78: {type: "close_array", depth: 1, value: "]"}
