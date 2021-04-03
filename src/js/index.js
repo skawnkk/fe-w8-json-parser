@@ -1,9 +1,8 @@
-import style from "../style/style.scss";
+import "../style/style.scss";
 import { _ } from "./util.js";
 import jsonParser from "./jsonParser.js";
 import createHTML from "./createHTML.js";
 import { exampleData } from "./exampledata.js";
-
 import { stringTypeCounter, numberTypeCounter, parserDepth } from "./lexer.js";
 
 const init = () => {
