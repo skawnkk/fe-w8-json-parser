@@ -1,4 +1,4 @@
-export const exampleData = [
+export const exampleData: string[] = [
   `\["hello world"\]`,
   `\["junami", "json"\]`,
   `\["1", [2, 3], 4, 5, {"result" : "12345"}\]`,

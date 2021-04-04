@@ -1,22 +1,29 @@
-import { DEFINEKEYWORD } from "./variables.js";
+import { DEFINEKEYWORD } from "./variables";
 
 export let stringTypeCounter: number = 0;
 export let numberTypeCounter: number = 0;
 export const parserDepth : number[] = [];
 
-export default function lexer(arr): object[] {
+interface obj {
+  type: string;
+  depth: number;
+  value?: string;
+  child?: obj[]; 
+}
+
+export default function lexer(arr: string[]): object[] {
 
   stringTypeCounter = 0;
   numberTypeCounter = 0;
   const arrayStack: number[] = [];
   const objectStack: number[] = [];
 
-  const result = arr.reduce((acc, cur): object[] => {
+  const result = arr.reduce((acc: object[], cur: string): object[] => {
     const type: string =
       cur === null
         ? "null_object"
         : DEFINEKEYWORD[cur.toString()[0]] || "number";
-    const object = {
+    const object: obj = {
       type,
       depth: arrayStack.length + objectStack.length,
       value: null,

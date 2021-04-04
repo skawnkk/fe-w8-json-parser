@@ -34,7 +34,7 @@ export default function parser(arr): object[] {
     prev = item;
   }
 
-  function pushItem(item) {
+  function pushItem(item: object[]): void {
     if (prop) {
       prop.value.propValue = item;
       prop.type = "objectProperty";

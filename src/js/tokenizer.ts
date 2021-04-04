@@ -1,4 +1,4 @@
-import { SEPARATOR } from "./variables.js";
+import { SEPARATOR } from "./variables";
 
 const error = (i) => {
   return new Error(
@@ -8,9 +8,9 @@ const error = (i) => {
 
 // 주어진 문자열을 순서대로 방문하며, depth 구분 없이 토큰 단위의 배열로 반환.
 // create~Token() 함수들은 tokenizer의 내부에 존재.
-export default function tokenizer(str) {
-  const result = [];
-  let i = 0;
+export default function tokenizer(str: string): string[] {
+  const result: any[] = [];
+  let i: number = 0;
   while (i < str.length) {
     if (str[i] === " ") {
       i++;
@@ -45,7 +45,7 @@ export default function tokenizer(str) {
     }
   }
 
-  function createNullToken() {
+  function createNullToken(): null {
     if (str[++i] !== "u") throw error(i);
     if (str[++i] !== "l") throw error(i);
     if (str[++i] !== "l") throw error(i);
@@ -53,7 +53,7 @@ export default function tokenizer(str) {
     return null;
   }
 
-  function createTrueToken() {
+  function createTrueToken(): boolean {
     if (str[++i] !== "r") throw error(i);
     if (str[++i] !== "u") throw error(i);
     if (str[++i] !== "e") throw error(i);
@@ -61,7 +61,7 @@ export default function tokenizer(str) {
     return true;
   }
 
-  function createFalseToken() {
+  function createFalseToken(): boolean {
     if (str[++i] !== "a") throw error(i);
     if (str[++i] !== "l") throw error(i);
     if (str[++i] !== "s") throw error(i);
@@ -70,7 +70,7 @@ export default function tokenizer(str) {
     return false;
   }
 
-  function createStringToken(quotation) {
+  function createStringToken(quotation): string {
     const start = i;
     while (str[++i] !== quotation) {
       if (str[i] === "\\") {
@@ -80,7 +80,7 @@ export default function tokenizer(str) {
     return str.substring(start, ++i);
   }
 
-  function createNumberToken() {
+  function createNumberToken(): number {
     const start = i;
     if (str[i] === "-") i++;
     let count = 0;

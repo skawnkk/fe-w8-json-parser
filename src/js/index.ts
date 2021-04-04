@@ -1,8 +1,8 @@
 import "../style/style.scss";
-import { _ } from "./util.js";
+import { _ } from "./util";
 import jsonParser from "./jsonParser";
-import createHTML from "./createHTML.js";
-import { exampleData } from "./exampledata.js";
+import createHTML from "./createHTML";
+import { exampleData } from "./exampledata";
 import { stringTypeCounter, numberTypeCounter, parserDepth } from "./lexer";
 
 const init = (): void => {
@@ -22,7 +22,7 @@ const init = (): void => {
     else parseBtn.classList.remove("disabled");
   };
 
-  const parse = () => {
+  const parse = (): void => {
     try {
       const result: object[] = jsonParser(textarea.value);
       const renderHTML: string = createHTML(result);

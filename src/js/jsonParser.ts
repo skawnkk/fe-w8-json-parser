@@ -1,7 +1,7 @@
-import tokenizer from "./tokenizer.js";
+import tokenizer from "./tokenizer";
 import lexer from "./lexer";
 import parser from "./parser";
 
-export default function jsonParser(str): object[] {
+export default function jsonParser(str: string): object[] {
   return parser(lexer(tokenizer(str)));
 }
