@@ -1,6 +1,6 @@
-export const SEPARATOR = ["{", "}", "[", "]", ",", ":"];
+export const SEPARATOR: string[] = ["{", "}", "[", "]", ",", ":"];
 
-export const DEFINEKEYWORD = {
+export const DEFINEKEYWORD: any = {
   "[": "array",
   "{": "object",
   ",": "seperator",

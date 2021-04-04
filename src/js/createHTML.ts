@@ -1,6 +1,6 @@
-import { openDom, closeDom } from "./util.js";
+import { openDom, closeDom } from "./util";
 
-export default function createHTML(item, prefix = "{", suffix = ",") {
+export default function createHTML(item:any, prefix:string = "{", suffix:string= ","):string{
   let html = openDom({ value: prefix, classes: ["object-block"] });
   html +=
     openDom({ value: `"type": "${item.type}"`, classes: ["object-block"] }) +
@@ -11,8 +11,7 @@ export default function createHTML(item, prefix = "{", suffix = ",") {
     while (item.child.length > 0) {
       html += createHTML(
         item.child.shift(),
-        "{",
-        item.child.length === 0 ? "" : ","
+        "{",item.child.length === 0 ? "" : ","
       );
     }
     html += closeDom({ value: "]" });
